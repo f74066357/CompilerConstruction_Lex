@@ -58,9 +58,6 @@ comment2  "/*"([^*]|\*+[^*/])*\*+"/"
 ";"         { printf("%-8s \t %s\n", yytext, "SEMICOLON"); }
 ","         { printf("%-8s \t %s\n", yytext, "COMMA"); }
 
- /* QUOTA */
- /*STRING_LIT*/
-
 {string}	{ printf("%-8c \t %s\n",yytext[0],"QUOTA");
 			      int i = 0;
             char s[100]= "";
@@ -71,6 +68,7 @@ comment2  "/*"([^*]|\*+[^*/])*\*+"/"
 			      printf("%-8s \t %s\n",s,"STRING");
             printf("%-8c \t %s\n",yytext[len-1],"QUOTA");
 			    }
+
  /*COMMENT*/ 
 {comment1}  {
               incomment=1;
@@ -117,7 +115,6 @@ comment2  "/*"([^*]|\*+[^*/])*\*+"/"
               }
               flag=0;
             }
- /*NEWLINE*/
 "\n"        { printf("%-8s \t %s\n"," ","NEWLINE");
               line_num++;
               if(incomment==1){
@@ -135,28 +132,25 @@ comment2  "/*"([^*]|\*+[^*/])*\*+"/"
 {inumber}   { printf("%-8s \t %s\n", yytext, "INT_LIT"); }
 {fnumber}   { printf("%-8s \t %s\n", yytext, "FLOAT_LIT"); }
 
- /*INT*/
- /*FLOAT*/
 "int32"	    { printf("%-8s \t %s\n", yytext, "INT");}
-"float32"	{ printf("%-8s \t %s\n", yytext, "FLOAT");}
- /*STRING*/
-"string"	{ printf("%-8s \t %s\n", yytext, "STRING");}
+"float32"	  { printf("%-8s \t %s\n", yytext, "FLOAT");}
+"string"	  { printf("%-8s \t %s\n", yytext, "STRING");}
 
 "bool"      { printf("%-8s \t %s\n", yytext, "BOOL"); }
 "true"      { printf("%-8s \t %s\n", yytext, "TRUE"); }
 "false"     { printf("%-8s \t %s\n", yytext, "FALSE"); }
- /*VAR*/
  "var"      { printf("%-8s \t %s\n", yytext, "VAR"); }
- /* */ // Whitespace discard
 
 {id}        { printf("%-8s \t %s\n", yytext, "IDENT"); }
 
- <<EOF>>     { line_num++; 
-               if(incomment==1){
+ <<EOF>>    { 
+              line_num++; 
+              if(incomment==1){
                 comment_num++;
                 incomment=0;
-               }
-               yyterminate(); }
+              }
+              yyterminate(); 
+            }
 .           {;}
 
 %%
@@ -176,7 +170,6 @@ int main(int argc, char *argv[])
     }
     yylex();
     printf("\nFinish scanning,\n");
-    
     printf("total line: %d\n", line_num);
     printf("comment line: %d\n", comment_num);
     fclose(yyin);

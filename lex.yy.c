@@ -966,12 +966,10 @@ YY_RULE_SETUP
 #line 59 "compiler_hw1.l"
 { printf("%-8s \t %s\n", yytext, "COMMA"); }
 	YY_BREAK
-/* QUOTA */
-/*STRING_LIT*/
 case 31:
 /* rule 31 can match eol */
 YY_RULE_SETUP
-#line 64 "compiler_hw1.l"
+#line 61 "compiler_hw1.l"
 { printf("%-8c \t %s\n",yytext[0],"QUOTA");
 			      int i = 0;
             char s[100]= "";
@@ -986,7 +984,7 @@ YY_RULE_SETUP
 /*COMMENT*/ 
 case 32:
 YY_RULE_SETUP
-#line 75 "compiler_hw1.l"
+#line 73 "compiler_hw1.l"
 {
               incomment=1;
 	            printf("%-8s \t %s\n", yytext, "C++ Comment");
@@ -995,7 +993,7 @@ YY_RULE_SETUP
 case 33:
 /* rule 33 can match eol */
 YY_RULE_SETUP
-#line 79 "compiler_hw1.l"
+#line 77 "compiler_hw1.l"
 {
               incomment=1;
               int i=0;
@@ -1038,11 +1036,10 @@ YY_RULE_SETUP
               flag=0;
             }
 	YY_BREAK
-/*NEWLINE*/
 case 34:
 /* rule 34 can match eol */
 YY_RULE_SETUP
-#line 121 "compiler_hw1.l"
+#line 118 "compiler_hw1.l"
 { printf("%-8s \t %s\n"," ","NEWLINE");
               line_num++;
               if(incomment==1){
@@ -1053,104 +1050,101 @@ YY_RULE_SETUP
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 129 "compiler_hw1.l"
+#line 126 "compiler_hw1.l"
 { printf("%-8s \t %s\n", yytext, "PRINT"); }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 130 "compiler_hw1.l"
+#line 127 "compiler_hw1.l"
 { printf("%-8s \t %s\n", yytext, "PRINTLN"); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 131 "compiler_hw1.l"
+#line 128 "compiler_hw1.l"
 { printf("%-8s \t %s\n", yytext, "IF"); }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 132 "compiler_hw1.l"
+#line 129 "compiler_hw1.l"
 { printf("%-8s \t %s\n", yytext, "ELSE"); }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 133 "compiler_hw1.l"
+#line 130 "compiler_hw1.l"
 { printf("%-8s \t %s\n", yytext, "FOR"); }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 135 "compiler_hw1.l"
+#line 132 "compiler_hw1.l"
 { printf("%-8s \t %s\n", yytext, "INT_LIT"); }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 136 "compiler_hw1.l"
+#line 133 "compiler_hw1.l"
 { printf("%-8s \t %s\n", yytext, "FLOAT_LIT"); }
 	YY_BREAK
-/*INT*/
-/*FLOAT*/
 case 42:
 YY_RULE_SETUP
-#line 140 "compiler_hw1.l"
+#line 135 "compiler_hw1.l"
 { printf("%-8s \t %s\n", yytext, "INT");}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 141 "compiler_hw1.l"
+#line 136 "compiler_hw1.l"
 { printf("%-8s \t %s\n", yytext, "FLOAT");}
 	YY_BREAK
-/*STRING*/
 case 44:
 YY_RULE_SETUP
-#line 143 "compiler_hw1.l"
+#line 137 "compiler_hw1.l"
 { printf("%-8s \t %s\n", yytext, "STRING");}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 145 "compiler_hw1.l"
+#line 139 "compiler_hw1.l"
 { printf("%-8s \t %s\n", yytext, "BOOL"); }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 146 "compiler_hw1.l"
+#line 140 "compiler_hw1.l"
 { printf("%-8s \t %s\n", yytext, "TRUE"); }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 147 "compiler_hw1.l"
+#line 141 "compiler_hw1.l"
 { printf("%-8s \t %s\n", yytext, "FALSE"); }
 	YY_BREAK
-/*VAR*/
 case 48:
 YY_RULE_SETUP
-#line 149 "compiler_hw1.l"
+#line 142 "compiler_hw1.l"
 { printf("%-8s \t %s\n", yytext, "VAR"); }
 	YY_BREAK
-/* */ // Whitespace discard
 case 49:
 YY_RULE_SETUP
-#line 152 "compiler_hw1.l"
+#line 144 "compiler_hw1.l"
 { printf("%-8s \t %s\n", yytext, "IDENT"); }
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 154 "compiler_hw1.l"
-{ line_num++; 
-               if(incomment==1){
+#line 146 "compiler_hw1.l"
+{ 
+              line_num++; 
+              if(incomment==1){
                 comment_num++;
                 incomment=0;
-               }
-               yyterminate(); }
+              }
+              yyterminate(); 
+            }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 160 "compiler_hw1.l"
+#line 154 "compiler_hw1.l"
 {;}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 162 "compiler_hw1.l"
+#line 156 "compiler_hw1.l"
 ECHO;
 	YY_BREAK
-#line 1154 "lex.yy.c"
+#line 1148 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2153,7 +2147,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 162 "compiler_hw1.l"
+#line 156 "compiler_hw1.l"
 
 
 /*  C Code section */
@@ -2171,7 +2165,6 @@ int main(int argc, char *argv[])
     }
     yylex();
     printf("\nFinish scanning,\n");
-    
     printf("total line: %d\n", line_num);
     printf("comment line: %d\n", comment_num);
     fclose(yyin);
